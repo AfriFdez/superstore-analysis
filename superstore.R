@@ -1,3 +1,12 @@
+#....cargar librerias
+
+
+#Cargar el conjunto de datos
+> superstore_data <- read.csv("Superstore.csv")
+> View(superstore_data)
+> head(superstore_data)
+
+
 #Fechas a formato Date
 superstore_data$Order.Date <- as.Date(superstore_data$Order.Date, format="%m/%d/%Y")
 superstore_data$Ship.Date <- as.Date(superstore_data$Ship.Date, format="%m/%d/%Y")
@@ -9,10 +18,11 @@ superstore_data <- na.omit(superstore_data) #Eliminar valores NA
 
 ##ANALISIS ESTADISTICO
 
-#Resumen estadístico de las variables numéricas
+#Resumen estadístico de variables numéricas
 summary(superstore_data)
 
-##GRAFICOS 
+##GRÁFICOS 
+
 #Gráfico de ventas por categoría
 ggplot(superstore_data, aes(x=Category, y=Sales)) +
   geom_boxplot(fill="red", color="lightblue", outlier.color = "blue", outlier.size = 2) +
@@ -50,8 +60,7 @@ ggplot(superstore_data, aes(x=Discount, y=Profit)) +
 
 #_______________________#
 ###MODELO DE REGRESION###
-#Preparacionde datos
-#Seleccionar variables 
+#Preparacion de datos
 model_data <- superstore_data %>%
   select(Sales, Quantity, Discount, Profit)
 
